@@ -73,14 +73,15 @@ while True:
 
         for (currency_id, balance) in balances.items():
             localtime = time.strftime('%c')
+            currency_name = (currencies[currency_id] if
+                             currency_id in currencies else currency_id)
+
             if (currency_id == target_currency_id or currency_id not in markets or
                 balance < 1):
                 print (localtime + ' %s balance is %s. Waiting for at least one coin to trade on %s' %
                        (currency_name, balance,  exchange.name))
                 continue
 
-            currency_name = (currencies[currency_id] if
-                             currency_id in currencies else currency_id)
             try:
                 time.sleep(request_delay)
                 order_id = exchange.CreateOrder(markets[currency_id].market_id, balance, bid=False)
