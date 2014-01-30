@@ -73,7 +73,9 @@ while True:
 
         for (currency_id, balance) in balances.items():
             if (currency_id == target_currency_id or currency_id not in markets or
-                balance < markets[currency_id].trade_minimum):
+                balance < 1):
+                print (localtime + ' %s balance is %s. Waiting for at least one coin to trade on %s' %
+                       (currency_name, balance,  exchange.name))
                 continue
 
             currency_name = (currencies[currency_id] if
