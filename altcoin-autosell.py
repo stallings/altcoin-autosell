@@ -72,6 +72,7 @@ while True:
             continue
 
         for (currency_id, balance) in balances.items():
+            localtime = time.strftime('%c')
             if (currency_id == target_currency_id or currency_id not in markets or
                 balance < 1):
                 print (localtime + ' %s balance is %s. Waiting for at least one coin to trade on %s' %
@@ -84,11 +85,9 @@ while True:
                 time.sleep(request_delay)
                 order_id = exchange.CreateOrder(markets[currency_id].market_id, balance, bid=False)
             except exchange_api.ExchangeException as e:
-                localtime = time.strftime('%c')
                 print (localtime + ' Failed to create sell order for %s %s on %s: %s' %
                        (balance, currency_name, exchange.name, e))
             else:
-                localtime = time.strftime('%c')
                 print (localtime + ' Created sell order %s for %s %s on %s.' %
                        (order_id, balance, currency_name, exchange.name))
     time.sleep(poll_delay)
