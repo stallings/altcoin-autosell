@@ -78,8 +78,8 @@ while True:
 
             if (currency_id == target_currency_id or currency_id not in markets or
                 balance < 1):
-                print (localtime + ' %s balance is %s. Waiting for at least one coin to trade on %s' %
-                       (currency_name, balance,  exchange.name))
+                #print (localtime + ' %s balance is %s. Waiting for at least one coin to trade on %s' %
+                       #(currency_name, balance,  exchange.name))
                 continue
 
             try:
